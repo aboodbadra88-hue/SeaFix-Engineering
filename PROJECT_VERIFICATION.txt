@@ -1,0 +1,4 @@
+3624 DB marker: PASS
+A. Badra: PASS
+single-file web app: PASS
+Capacitor config: PASS
