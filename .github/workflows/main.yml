@@ -34,6 +34,18 @@ jobs:
           distribution: temurin
           java-version: '21'
 
+      - name: Set SeaFix app icon
+        run: |
+          ICON=$(find . -maxdepth 1 -type f -name "*.png" | head -1)
+          echo "Using icon: $ICON"
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+          convert "$ICON" -resize 48x48 android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+          convert "$ICON" -resize 72x72 android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+          convert "$ICON" -resize 96x96 android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+          convert "$ICON" -resize 144x144 android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+          convert "$ICON" -resize 192x192 android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+
       - name: Build APK
         working-directory: android
         run: |
